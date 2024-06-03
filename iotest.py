@@ -1,6 +1,5 @@
 import os
 import time
-from tracemalloc import start
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -14,7 +13,7 @@ directories = [
 ]
 
 # Define the size of the chunks to write in bytes (100MB)
-chunk_size = 100 * 1024 * 1024
+chunk_size = 500 * 1024 * 1024
 
 # Define the number of times to write and read the chunks
 num_iterations = 10
@@ -71,7 +70,7 @@ mean_values = [np.mean(results[directory]["write_speeds"]) for directory in dire
 for i, mean in enumerate(mean_values):
     plt.text(i + 1.3, mean, f"   {mean:.2f}\nMB/s", ha="center", va="center")
 plt.xticks([1, 2, 3], ["local", "nfs", "smb"])
-plt.savefig("output/write_speeds.png")
+plt.savefig("output/os_write_speeds.png")
 
 # Now for read speeds
 plt.figure(figsize=(6, 6))
@@ -85,5 +84,4 @@ mean_values = [np.mean(results[directory]["read_speeds"]) for directory in direc
 for i, mean in enumerate(mean_values):
     plt.text(i + 1.3, mean, f"   {mean:.2f}\nMB/s", ha="center", va="center")
 plt.xticks([1, 2, 3], ["local", "nfs", "smb"])
-plt.savefig("output/os_read_speeds.png")
 plt.savefig("output/os_read_speeds.png")
