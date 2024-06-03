@@ -1,8 +1,9 @@
 #!/bin/bash
 # Credit: https://cloud.google.com/compute/docs/disks/benchmarking-pd-performance
-
+# print current directory
+pwd
 TEST_DIR=$1
-OUT_DIR="/data/BS/userdata/nilo/projects/storage-tests/output/"
+OUT_DIR="./output"
 RUNTIME="60s"
 mkdir -p $TEST_DIR
 mkdir -p $OUT_DIR
