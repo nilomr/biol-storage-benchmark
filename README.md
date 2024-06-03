@@ -28,10 +28,8 @@ Install these in a new Python environment
 1. Install the required software and Python libraries.
 
 2. `cd` into the repository folder and run the `benchmark.sh` script to generate
-   the data. The script will run a series of fio tests and save the results in
+   the data using randread and randwrite operations. The script will run a series of fio tests and save the results in
    json files. Do this once for each volume you want to test.
-
-![](output/bandwidth.png)
 
 ```bash
 bash benchmark.sh /path/to/directory
@@ -48,6 +46,13 @@ the results there.
 2. Run the 'iotest.py' script to generate the data and plots. These show
    sequential read and write speeds (see script for details).
 
+
+
+## Results
+### Read and write (rand) using fio
+![](output/bandwidth.png)
+
+# Read and Write (sequential, using os module)
 ![](output/os_read_speeds.png)![](output/os_write_speeds.png)
 
 
