@@ -27,7 +27,7 @@ def plot_bandwidth(df):
     )
     plt.ylabel("Bandwidth (MB/s)")
     plt.title("Bandwidth (MB/s) for randread and randwrite operations")
-    plt.ylim(500, 600)  # Truncate y-axis from 0 to 250 MB/s
+    plt.ylim(520, 600)  # Truncate y-axis from 0 to 250 MB/s
     plt.savefig("output/bandwidth.png")
 
 
@@ -73,16 +73,20 @@ def main():
         var_name="bw_type",
         value_name="bw",
     )
+    # Chnage 'storage-tests' to 'local'
+    bw_long["volume"] = bw_long["volume"].apply(
+        lambda x: "local" if x == "storage-tests" else x
+    )
+    # Change order of rows so in volume local is first, then nfs, then smb
+    bw_long["volume"] = pd.Categorical(bw_long["volume"], ["local", "nfs", "smb"])
 
+    # remove rows with 0 bandwidth
     bw_long = bw_long[bw_long["bw"] > 0]
-
     plot_bandwidth(bw_long)
 
     with open("output/summary.json", "w") as f:
         json.dump(stats, f, indent=4)
 
 
-if __name__ == "__main__":
-    main()
 if __name__ == "__main__":
     main()
