@@ -27,7 +27,7 @@ def plot_bandwidth(df):
     )
     plt.ylabel("Bandwidth (MB/s)")
     plt.title("Bandwidth (MB/s) for randread and randwrite operations")
-    plt.ylim(520, 600)  # Truncate y-axis from 0 to 250 MB/s
+    # plt.ylim(520, 600)  # Truncate y-axis from 0 to 250 MB/s
     plt.savefig("output/bandwidth.png")
 
 
