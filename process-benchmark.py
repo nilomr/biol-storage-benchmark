@@ -78,7 +78,9 @@ def main():
         lambda x: "local" if x == "storage-tests" else x
     )
     # Change order of rows so in volume local is first, then nfs, then smb
-    bw_long["volume"] = pd.Categorical(bw_long["volume"], ["local", "nfs", "smb"])
+    # (only if "local", "nfs", "smb")
+    if all(x in bw_long["volume"].unique() for x in ["local", "nfs", "smb"]):
+        bw_long["volume"] = pd.Categorical(bw_long["volume"], ["local", "nfs", "smb"])
 
     # remove rows with 0 bandwidth
     bw_long = bw_long[bw_long["bw"] > 0]
